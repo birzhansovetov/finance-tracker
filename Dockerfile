@@ -18,9 +18,6 @@ RUN touch database/database.sqlite
 
 RUN chmod -R 775 storage bootstrap/cache database
 
-RUN php artisan key:generate --force
-
-RUN php artisan migrate --force || true
 
 EXPOSE 10000
 
