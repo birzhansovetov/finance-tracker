@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class FinanceTrackerController extends Controller
 {
@@ -18,16 +20,26 @@ class FinanceTrackerController extends Controller
     }
 
     public function registerSubmit(Request $request)
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => 'required|email',
-            'password' => 'required|confirmed|min:6',
-            'terms' => 'required'
-        ]);
+{
+    $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'email', 'unique:users,email'],
+        'password' => ['required', 'confirmed', 'min:6'],
+        'terms' => ['required'],
+    ]);
 
-        return back()->with('success', __('app.registration_success'));
-    }
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+    ]);
+
+    $user->assignRole('viewer'); 
+
+    Auth::login($user);
+
+    return redirect()->route('dashboard');
+}
 
     public function login()
     {
