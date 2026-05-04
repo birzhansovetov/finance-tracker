@@ -150,4 +150,12 @@ return [
 'support_desc' => 'Frequently asked questions, support form and helpful instructions.',
 'transactions_desc' => 'Transaction list with filters, search, sorting, edit and delete actions.',
 'add_transaction_desc' => 'Form to add income or expense with amount, category, date and notes.',
+'compose_message' => 'Compose Message',
+'to' => 'To',
+'subject' => 'Subject',
+'message' => 'Message',
+'write_message' => 'Write your message here...',
+'attach_file' => 'Attach File',
+'no_attachment' => 'No attachment',
+'cancel' => 'Cancel',
 ];

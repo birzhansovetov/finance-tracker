@@ -34,7 +34,7 @@ class FinanceTrackerController extends Controller
         'password' => Hash::make($request->password),
     ]);
 
-    $user->assignRole('viewer'); 
+    $user->assignRole('owner'); 
 
     Auth::login($user);
 
