@@ -13,7 +13,7 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs database bootstrap/cache
-
+RUN php artisan migrate --force
 RUN touch database/database.sqlite
 
 RUN chmod -R 775 storage bootstrap/cache database
