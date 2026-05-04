@@ -64,7 +64,12 @@ Route::post('/email/compose', [EmailController::class, 'store']) ->name('email.s
 Route::get('/email/sent',     [EmailController::class, 'sent'])  ->name('email.sent'); 
 
 Route::get('/check-role', function () {
-    return auth()->check()
-        ? auth()->user()
-        : 'Not logged in';
+    if (!auth()->check()) {
+        return 'Not logged in';
+    }
+
+    return [
+        'user' => auth()->user(),
+        'roles' => auth()->user()->getRoleNames(),
+    ];
 });
