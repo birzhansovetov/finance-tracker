@@ -37,12 +37,12 @@ class EmailController extends Controller
         body: $request->message,
         file: $request->file_id ? UserFile::find($request->file_id) : null,
     ));
-
 \App\Models\SentEmail::create([
     'user_id' => Auth::id(),
     'to' => $request->to,
     'subject' => $request->subject,
-    'message' => $request->message,
+    'body' => $request->message,
+    'file_id' => $request->file_id,
 ]);
 
 return redirect()->back()->with('success', 'Email sent successfully to ' . $request->to);
