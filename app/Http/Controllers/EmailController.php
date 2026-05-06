@@ -49,7 +49,9 @@ return redirect()->back()->with('success', 'Email sent successfully to ' . $requ
     }
     public function sent()
 {
-    $emails = \App\Models\SentEmail::latest()->get();
+    $emails = \App\Models\SentEmail::where('user_id', Auth::id())
+        ->latest()
+        ->get();
 
     return view('finance.email-sent', compact('emails'));
 }

@@ -14,21 +14,23 @@
         @else
             <table style="width:100%;">
                 <thead>
-                    <tr>
-                        <th>{{ __('app.to') }}</th>
-                        <th>{{ __('app.subject') }}</th>
-                        <th>{{ __('app.sent_at') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($emails as $email)
-                        <tr>
-                            <td>{{ $email->to }}</td>
-                            <td>{{ $email->subject }}</td>
-                            <td>{{ $email->created_at->format('d M Y, H:i') }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
+    <tr>
+        <th>{{ __('app.to') }}</th>
+        <th>{{ __('app.subject') }}</th>
+        <th>{{ __('app.message') }}</th>
+        <th>{{ __('app.sent_at') }}</th>
+    </tr>
+</thead>
+<tbody>
+    @foreach($emails as $email)
+        <tr>
+            <td>{{ $email->to }}</td>
+            <td>{{ $email->subject }}</td>
+            <td>{{ $email->body }}</td>
+            <td>{{ $email->created_at->format('d M Y, H:i') }}</td>
+        </tr>
+    @endforeach
+</tbody>
             </table>
         @endif
     </div>
