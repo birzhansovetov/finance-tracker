@@ -32,15 +32,20 @@ class EmailController extends Controller
         ]);
 
         Mail::to($request->to)
-            ->send(new \App\Mail\GenericMail(
-                subject: $request->subject,
-                body:    $request->message,
-                file:    $request->file_id
-                    ? UserFile::find($request->file_id)
-                    : null,
-            ));
+    ->send(new \App\Mail\GenericMail(
+        subject: $request->subject,
+        body: $request->message,
+        file: $request->file_id ? UserFile::find($request->file_id) : null,
+    ));
 
-        return redirect()->back()->with('success', 'Email sent successfully to ' . $request->to);
+\App\Models\SentEmail::create([
+    'user_id' => Auth::id(),
+    'to' => $request->to,
+    'subject' => $request->subject,
+    'message' => $request->message,
+]);
+
+return redirect()->back()->with('success', 'Email sent successfully to ' . $request->to);
     }
     public function sent()
 {
