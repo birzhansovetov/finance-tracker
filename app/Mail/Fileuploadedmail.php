@@ -38,7 +38,6 @@ public function __construct(UserFile $file)
 
     public function attachments(): array
     {
-        // Optionally attach the uploaded file to the email
         return [
             Attachment::fromStorageDisk('local', $this->file->path)
                 ->as($this->file->original_name)
