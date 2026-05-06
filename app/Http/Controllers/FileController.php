@@ -50,7 +50,7 @@ class FileController extends Controller
         ]);
 
         // Send email notification to the user
-        Mail::to(Auth::user()->email)->send(new FileUploadedMail($userFile));
+        //Mail::to(Auth::user()->email)->send(new FileUploadedMail($userFile));
 
         return redirect()->route('files.index')
             ->with('success', 'File "' . $originalName . '" uploaded successfully.');
